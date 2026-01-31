@@ -261,7 +261,7 @@ query GetShipments {
    git add .
    git commit -m "Initial commit"
    git branch -M main
-   git remote add origin https://github.com/yourusername/tms-app.git
+   git remote add origin https://github.com/sakil470004/GQLAB.git
    git push -u origin main
    ```
 
