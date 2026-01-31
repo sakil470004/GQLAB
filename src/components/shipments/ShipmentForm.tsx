@@ -1,47 +1,29 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Shipment } from '@/types';
 import { X } from 'lucide-react';
 
 interface ShipmentFormProps {
   shipment?: Shipment | null;
-  onSubmit: (data: Partial<Shipment>) => void;
+  onSubmit: (data: Record<string, unknown>) => void;
   onClose: () => void;
 }
 
 export default function ShipmentForm({ shipment, onSubmit, onClose }: ShipmentFormProps) {
   const [formData, setFormData] = useState({
-    shipperName: '',
-    carrierName: '',
-    pickupLocation: '',
-    deliveryLocation: '',
-    pickupDate: '',
-    deliveryDate: '',
-    status: 'pending',
-    trackingNumber: '',
-    weight: '',
-    rate: '',
-    notes: '',
+    shipperName: shipment?.shipperName || '',
+    carrierName: shipment?.carrierName || '',
+    pickupLocation: shipment?.pickupLocation || '',
+    deliveryLocation: shipment?.deliveryLocation || '',
+    pickupDate: shipment?.pickupDate?.split('T')[0] || '',
+    deliveryDate: shipment?.deliveryDate?.split('T')[0] || '',
+    status: shipment?.status || 'pending',
+    trackingNumber: shipment?.trackingNumber || '',
+    weight: shipment?.weight?.toString() || '',
+    rate: shipment?.rate?.toString() || '',
+    notes: shipment?.notes || '',
   });
-
-  useEffect(() => {
-    if (shipment) {
-      setFormData({
-        shipperName: shipment.shipperName,
-        carrierName: shipment.carrierName,
-        pickupLocation: shipment.pickupLocation,
-        deliveryLocation: shipment.deliveryLocation,
-        pickupDate: shipment.pickupDate.split('T')[0],
-        deliveryDate: shipment.deliveryDate.split('T')[0],
-        status: shipment.status,
-        trackingNumber: shipment.trackingNumber,
-        weight: shipment.weight.toString(),
-        rate: shipment.rate.toString(),
-        notes: shipment.notes || '',
-      });
-    }
-  }, [shipment]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -2,7 +2,7 @@
 
 import { Shipment } from '@/types';
 import { format } from 'date-fns';
-import { X, MapPin, Truck, Calendar, Package, DollarSign, Flag, FileText } from 'lucide-react';
+import { X, MapPin, Truck, Package, DollarSign, Flag, FileText } from 'lucide-react';
 
 interface ShipmentDetailProps {
   shipment: Shipment;

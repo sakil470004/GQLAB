@@ -1,8 +1,8 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-import { DEMO_LOGIN, GET_ME } from '@/graphql/queries';
+import { graphqlRequest } from '@/lib/graphql-client';
+import { DEMO_LOGIN_QUERY, GET_ME_QUERY } from '@/lib/queries';
 
 interface User {
   id: string;
@@ -19,49 +19,50 @@ interface AuthContextType {
   logout: () => void;
 }
 
+interface DemoLoginResponse {
+  demoLogin: {
+    token: string;
+    user: User;
+  };
+}
+
+interface GetMeResponse {
+  me: User | null;
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const { data: meData, refetch } = useQuery(GET_ME, {
-    skip: typeof window === 'undefined' || !localStorage.getItem('token'),
-    onCompleted: (data) => {
-      if (data?.me) {
-        setUser(data.me);
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const data = await graphqlRequest<GetMeResponse>(GET_ME_QUERY);
+        if (data?.me) {
+          setUser(data.me);
+        }
+      } catch {
+        localStorage.removeItem('token');
       }
       setLoading(false);
-    },
-    onError: () => {
-      localStorage.removeItem('token');
-      setLoading(false);
-    },
-  });
+    };
 
-  const [demoLoginMutation] = useMutation(DEMO_LOGIN);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setLoading(false);
-    } else if (meData?.me) {
-      setUser(meData.me);
-      setLoading(false);
-    }
-  }, [meData]);
+    checkAuth();
+  }, []);
 
   const demoLogin = async (role: 'admin' | 'employee') => {
-    try {
-      const { data } = await demoLoginMutation({ variables: { role } });
-      if (data?.demoLogin) {
-        localStorage.setItem('token', data.demoLogin.token);
-        setUser(data.demoLogin.user);
-        await refetch();
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
-      throw error;
+    const data = await graphqlRequest<DemoLoginResponse>(DEMO_LOGIN_QUERY, { role });
+    if (data?.demoLogin) {
+      localStorage.setItem('token', data.demoLogin.token);
+      setUser(data.demoLogin.user);
     }
   };
 

@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-export const DEMO_LOGIN = gql`
+export const DEMO_LOGIN_QUERY = `
   mutation DemoLogin($role: String!) {
     demoLogin(role: $role) {
       token
@@ -14,7 +12,7 @@ export const DEMO_LOGIN = gql`
   }
 `;
 
-export const GET_ME = gql`
+export const GET_ME_QUERY = `
   query GetMe {
     me {
       id
@@ -25,7 +23,7 @@ export const GET_ME = gql`
   }
 `;
 
-export const GET_SHIPMENTS = gql`
+export const GET_SHIPMENTS_QUERY = `
   query GetShipments($filter: ShipmentFilter, $sort: SortInput, $page: Int, $limit: Int) {
     shipments(filter: $filter, sort: $sort, page: $page, limit: $limit) {
       shipments {
@@ -53,7 +51,7 @@ export const GET_SHIPMENTS = gql`
   }
 `;
 
-export const GET_SHIPMENT = gql`
+export const GET_SHIPMENT_QUERY = `
   query GetShipment($id: ID!) {
     shipment(id: $id) {
       id
@@ -76,55 +74,31 @@ export const GET_SHIPMENT = gql`
   }
 `;
 
-export const CREATE_SHIPMENT = gql`
+export const CREATE_SHIPMENT_QUERY = `
   mutation CreateShipment($input: ShipmentInput!) {
     createShipment(input: $input) {
       id
       shipmentId
-      shipperName
-      carrierName
-      pickupLocation
-      deliveryLocation
-      pickupDate
-      deliveryDate
-      status
-      trackingNumber
-      weight
-      rate
-      isFlagged
-      notes
     }
   }
 `;
 
-export const UPDATE_SHIPMENT = gql`
+export const UPDATE_SHIPMENT_QUERY = `
   mutation UpdateShipment($id: ID!, $input: ShipmentUpdateInput!) {
     updateShipment(id: $id, input: $input) {
       id
       shipmentId
-      shipperName
-      carrierName
-      pickupLocation
-      deliveryLocation
-      pickupDate
-      deliveryDate
-      status
-      trackingNumber
-      weight
-      rate
-      isFlagged
-      notes
     }
   }
 `;
 
-export const DELETE_SHIPMENT = gql`
+export const DELETE_SHIPMENT_QUERY = `
   mutation DeleteShipment($id: ID!) {
     deleteShipment(id: $id)
   }
 `;
 
-export const FLAG_SHIPMENT = gql`
+export const FLAG_SHIPMENT_QUERY = `
   mutation FlagShipment($id: ID!, $flagged: Boolean!) {
     flagShipment(id: $id, flagged: $flagged) {
       id
@@ -133,7 +107,7 @@ export const FLAG_SHIPMENT = gql`
   }
 `;
 
-export const SEED_DATA = gql`
+export const SEED_DATA_QUERY = `
   mutation SeedData {
     seedData
   }
