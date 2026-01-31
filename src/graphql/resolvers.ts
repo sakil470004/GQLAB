@@ -94,6 +94,21 @@ export const resolvers = {
       await connectDB();
       return Shipment.findById(args.id);
     },
+
+    trackShipment: async (_: unknown, args: { trackingNumber: string }, context: Context) => {
+      if (!context.user) throw new Error('Authentication required');
+      await connectDB();
+      
+      // Search by tracking number or shipment ID
+      const shipment = await Shipment.findOne({
+        $or: [
+          { trackingNumber: { $regex: args.trackingNumber, $options: 'i' } },
+          { shipmentId: { $regex: args.trackingNumber, $options: 'i' } },
+        ],
+      });
+      
+      return shipment;
+    },
   },
 
   Mutation: {

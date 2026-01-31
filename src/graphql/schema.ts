@@ -92,6 +92,7 @@ export const typeDefs = `#graphql
       limit: Int
     ): ShipmentConnection!
     shipment(id: ID!): Shipment
+    trackShipment(trackingNumber: String!): Shipment
   }
 
   type Mutation {

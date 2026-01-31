@@ -112,3 +112,26 @@ export const SEED_DATA_QUERY = `
     seedData
   }
 `;
+
+export const TRACK_SHIPMENT_QUERY = `
+  query TrackShipment($trackingNumber: String!) {
+    trackShipment(trackingNumber: $trackingNumber) {
+      id
+      shipmentId
+      shipperName
+      carrierName
+      pickupLocation
+      deliveryLocation
+      pickupDate
+      deliveryDate
+      status
+      trackingNumber
+      weight
+      rate
+      isFlagged
+      notes
+      createdAt
+      updatedAt
+    }
+  }
+`;
