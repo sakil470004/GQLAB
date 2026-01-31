@@ -132,7 +132,7 @@ export const resolvers = {
     demoLogin: async (_: unknown, args: { role: string }) => {
       await connectDB();
       
-      const email = args.role === 'admin' ? 'admin@tms.com' : 'employee@tms.com';
+      const email = args.role === 'admin' ? 'admin@gqlab.com' : 'employee@gqlab.com';
       let user = await User.findOne({ email });
 
       if (!user) {

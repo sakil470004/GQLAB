@@ -1,6 +1,6 @@
-# 🚚 Transportation Management System (TMS)
+# 🚚 GQLAB - Shipment Management System
 
-A modern, full-stack Transportation Management System built with Next.js 16, GraphQL, and MongoDB. This application helps logistics companies manage shipments, track deliveries, and streamline their transportation operations.
+A modern, full-stack Shipment Management System built with Next.js 16, GraphQL, and MongoDB. This application helps logistics companies manage shipments, track deliveries, and streamline their transportation operations.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)

@@ -30,8 +30,8 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4">
             <Truck size={32} className="text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">TMS Pro</h1>
-          <p className="text-blue-200 mt-2">Transportation Management System</p>
+          <h1 className="text-3xl font-bold text-white">GQLAB</h1>
+          <p className="text-blue-200 mt-2">Shipment Management System</p>
         </div>
 
         {/* Login Card */}
@@ -113,7 +113,7 @@ export default function LoginPage() {
 
         {/* Footer */}
         <p className="text-center text-blue-200 text-sm mt-8">
-          © 2024 TMS Pro. All rights reserved.
+          © 2024 GQLAB. All rights reserved.
         </p>
       </div>
     </div>

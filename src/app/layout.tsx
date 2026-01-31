@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TMS Pro - Transportation Management System",
-  description: "Professional Transportation Management System for efficient logistics",
+  title: "GQLAB - Shipment Management System",
+  description: "Professional Shipment Management System for efficient logistics",
 };
 
 export default function RootLayout({

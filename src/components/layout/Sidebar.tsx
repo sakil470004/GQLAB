@@ -90,7 +90,7 @@ export default function Sidebar() {
             <div className="p-2 bg-blue-600 rounded-lg">
               <Truck size={24} />
             </div>
-            <span className="text-xl font-bold">TMS Pro</span>
+            <span className="text-xl font-bold">GQLAB</span>
           </div>
 
           {/* Navigation */}
